@@ -1,0 +1,17 @@
+{
+  "name": "hotel-delacruxe",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hotel Delacruxe booking website with admin booking management.",
+  "main": "server.js",
+  "scripts": {
+    "build": "node scripts/prepare-netlify.js",
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^9.1.0"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "settings": {
+    "hotelName": "Hotel Delacruxe",
+    "roomName": "Delacruxe Room",
+    "price": 16000,
+    "inventory": 15,
+    "currency": "NGN",
+    "receptionistPhone": "09163351767",
+    "whatsappNumber": "2349163351767",
+    "address": "GPWX+VRH, opposite Rhema Bible Church, Warri, Ugboroke 332104, Delta",
+    "mapQuery": "Hotel Delacruxe GPWX+VRH opposite Rhema Bible Church Warri Ugboroke 332104 Delta"
+  },
+  "bookings": []
+}

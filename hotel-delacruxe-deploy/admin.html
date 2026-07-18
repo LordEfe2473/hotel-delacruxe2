@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Admin website for Hotel Delacruxe room price, availability, and booking management."
+    />
+    <title>Hotel Delacruxe Admin</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230e6f68'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-size='24' font-family='Arial' font-weight='700' fill='white'%3EHD%3C/text%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="admin-body">
+    <header class="site-header admin-header">
+      <a class="brand" href="index.html" aria-label="Hotel Delacruxe home">
+        <span class="brand-mark" aria-hidden="true">HD</span>
+        <span>Hotel Delacruxe Admin</span>
+      </a>
+
+      <nav class="primary-nav admin-nav" aria-label="Admin navigation">
+        <a href="index.html">Guest website</a>
+        <a href="#settings">Settings</a>
+        <a href="#bookings">Bookings</a>
+        <button class="nav-button" type="button" data-admin-logout hidden>Log out</button>
+      </nav>
+    </header>
+
+    <main class="admin-login" data-login-panel hidden>
+      <form class="admin-panel login-panel" data-login-form>
+        <div class="section-kicker">Admin login</div>
+        <h1>Enter admin password</h1>
+        <p>Use the password set on the web server to manage bookings and hotel settings.</p>
+        <label>
+          <span>Password</span>
+          <input type="password" name="password" autocomplete="current-password" required />
+        </label>
+        <button class="button primary" type="submit">Log in</button>
+        <p class="booking-note" data-login-note aria-live="polite"></p>
+      </form>
+    </main>
+
+    <main class="admin-main" data-admin-content hidden>
+      <section class="admin-hero" aria-labelledby="admin-title">
+        <div>
+          <p class="eyebrow">Admin website</p>
+          <h1 id="admin-title">Manage Hotel Delacruxe</h1>
+          <p>
+            Update the one room price, control how many rooms are available, and review guest bookings.
+          </p>
+        </div>
+        <div class="admin-summary" aria-label="Hotel summary">
+          <div>
+            <span>Price</span>
+            <strong data-summary-price></strong>
+          </div>
+          <div>
+            <span>Total rooms</span>
+            <strong data-summary-rooms></strong>
+          </div>
+          <div>
+            <span>New bookings</span>
+            <strong data-summary-new></strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="admin-grid" id="settings" aria-labelledby="settings-title">
+        <form class="admin-panel settings-panel" data-settings-form>
+          <div class="section-kicker">Settings</div>
+          <h2 id="settings-title">Room price and availability</h2>
+          <label>
+            <span>Hotel name</span>
+            <input type="text" name="hotelName" required />
+          </label>
+          <label>
+            <span>Room name</span>
+            <input type="text" name="roomName" required />
+          </label>
+          <label>
+            <span>Nightly price in NGN</span>
+            <input type="number" name="price" min="0" step="1000" required />
+          </label>
+          <label>
+            <span>Total available rooms</span>
+            <input type="number" name="inventory" min="0" step="1" required />
+          </label>
+          <label>
+            <span>Reception phone</span>
+            <input type="tel" name="receptionistPhone" required />
+          </label>
+          <label>
+            <span>WhatsApp number</span>
+            <input type="tel" name="whatsappNumber" required />
+          </label>
+          <label>
+            <span>Google Maps search</span>
+            <input type="text" name="mapQuery" required />
+          </label>
+          <label>
+            <span>Address</span>
+            <textarea name="address" rows="3" required></textarea>
+          </label>
+          <div class="admin-actions">
+            <button class="button primary" type="submit">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19.9 5.2a1 1 0 0 1-.1 1.41l-9.5 8.2a1 1 0 0 1-1.37-.05l-4.5-4.5a1 1 0 0 1 1.42-1.42l3.84 3.84 8.82-7.61a1 1 0 0 1 1.4.13Z" />
+              </svg>
+              Save changes
+            </button>
+            <button class="button secondary" type="button" data-reset-settings>Reset defaults</button>
+          </div>
+          <p class="booking-note" data-settings-note aria-live="polite"></p>
+        </form>
+
+        <section class="admin-panel">
+          <div class="section-kicker">Today</div>
+          <h2>Availability snapshot</h2>
+          <div class="availability-stack">
+            <div>
+              <span>Available tonight</span>
+              <strong data-tonight-available></strong>
+            </div>
+            <div>
+              <span>Reserved tonight</span>
+              <strong data-tonight-reserved></strong>
+            </div>
+            <div>
+              <span>Potential nightly revenue</span>
+              <strong data-nightly-revenue></strong>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="admin-panel bookings-panel" id="bookings" aria-labelledby="bookings-title">
+        <div class="bookings-heading">
+          <div>
+            <div class="section-kicker">Bookings</div>
+            <h2 id="bookings-title">Guest requests</h2>
+          </div>
+          <div class="admin-actions">
+            <button class="button secondary" type="button" data-export-bookings>Export CSV</button>
+            <button class="button danger" type="button" data-clear-bookings>Clear bookings</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="bookings-table">
+            <thead>
+              <tr>
+                <th>Reference</th>
+                <th>Guest</th>
+                <th>Stay</th>
+                <th>Rooms</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody data-bookings-body></tbody>
+          </table>
+        </div>
+        <p class="empty-state" data-empty-state>No bookings yet.</p>
+      </section>
+    </main>
+
+    <script src="admin.js"></script>
+  </body>
+</html>
